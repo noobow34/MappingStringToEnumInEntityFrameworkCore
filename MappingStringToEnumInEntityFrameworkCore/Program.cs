@@ -28,8 +28,8 @@ namespace MappingStringToEnumInEntityFrameworkCore
             //登録
             using (var context = new TestDbContext(options))
             {
-                context.Users.Add(new User { Id = 1, Name = "Bob", Gender = GenderEnum.Male }); //Maleは'M'として登録される
-                context.Users.Add(new User { Id = 2, Name = "Elizabeth", Gender = GenderEnum.Female }); //Femaleは'F'として登録される
+                context.Users.Add(new User { Name = "Bob", Gender = GenderEnum.Male }); //Maleは'M'として登録される
+                context.Users.Add(new User { Name = "Elizabeth", Gender = GenderEnum.Female }); //Femaleは'F'として登録される
                 context.SaveChanges();
             }
 
