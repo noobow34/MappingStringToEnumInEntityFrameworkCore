@@ -13,6 +13,6 @@ namespace MappingStringToEnumInEntityFrameworkCore
         [Column("NAME")]
         public string Name { get; set; }
         [Column("GENDER")]
-        public GenderEnum Gender { get; set; }
+        public GenderEnum? Gender { get; set; }
     }
 }
