@@ -7,6 +7,7 @@ namespace MappingStringToEnumInEntityFrameworkCore
     public class User
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("ID")]
         public int Id { get; set; }
         [Column("NAME")]

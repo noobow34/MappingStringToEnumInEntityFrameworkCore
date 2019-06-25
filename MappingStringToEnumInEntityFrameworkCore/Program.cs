@@ -1,20 +1,32 @@
 ﻿using EnumStringValues;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.IO;
 
 namespace MappingStringToEnumInEntityFrameworkCore
 {
     class Program
     {
+        //SQLiteのファイルパス（変更してください）
+        //SQLiteの場合、ファイルが存在しない場合は自動的に作成される
+        const string dbFileName = @"C:\temp\test.sqlite3";
         static void Main(string[] args)
         {
-            //InMemoryDBを使う
+            //フォルダが存在しない場合は作成
+            Directory.CreateDirectory(Path.GetDirectoryName(dbFileName));
+
             var options = new DbContextOptionsBuilder<TestDbContext>()
-                            .UseInMemoryDatabase(databaseName: "TEST")
+                            .UseSqlite($"Data Source={dbFileName}")
                             .Options;
 
+            //テーブルが存在しない場合は作成
+            using (var context = new TestDbContext(options))
+            {
+                context.Database.EnsureCreated();
+            }
+
             //登録
-            using(var context = new TestDbContext(options))
+            using (var context = new TestDbContext(options))
             {
                 context.Users.Add(new User { Id = 1, Name = "Bob", Gender = GenderEnum.Male }); //Maleは'M'として登録される
                 context.Users.Add(new User { Id = 2, Name = "Elizabeth", Gender = GenderEnum.Female }); //Femaleは'F'として登録される

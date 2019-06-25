@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="EnumStringValues" Version="4.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.4" />
   </ItemGroup>
 
 </Project>
